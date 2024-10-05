@@ -1,5 +1,5 @@
 <?php
-require("../includes/database_connect.php");
+require "../includes/database_connect.php";
 
 $full_name = $_POST['full_name'];
 $phone = $_POST['phone'];

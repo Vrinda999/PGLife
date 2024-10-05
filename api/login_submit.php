@@ -1,6 +1,6 @@
 <?php
 session_start();
-require("../includes/daabase_connect.php");
+require "../includes/database_connect.php";
 
 $email = $_POST['email'];
 $password = $_POST['password'];
