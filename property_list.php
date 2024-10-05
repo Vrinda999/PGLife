@@ -8,7 +8,7 @@ $city_name = $_GET['city'];
 $sql_1 = "SELECT * FROM cities WHERE name = '$city_name'";
 $result_1 = mysqli_query($conn, $sql_1);
 
-if (!$result) {
+if (!$result_1) {
     echo "Something Went Wrong!";
     return;
 }
@@ -64,9 +64,6 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
     include "includes/header.php";
     ?>
 
-    <div id="loading">
-    </div>
-
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb py-2">
             <li class="breadcrumb-item">
@@ -109,7 +106,7 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
                         $total_rating = round($total_rating, 1);
                         ?>
 
-                        <div class="star-container" title="<?php $total_rating ?>">
+                        <div class="star-container" title="<?= $total_rating ?>">
                             <?php
                             $rating = $total_rating;
                             for ($i = 0; $i < 5; $i++) {
@@ -119,12 +116,12 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
                                     <?php
                                 } elseif ($rating >= $i + 0.3) {
                                     ?>
-                                    <i class="fas fa-star-half-alt" </i>
-                                        <?php
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <?php
                                 } else {
                                     ?>
-                                        <i class="far fa-star"></i>
-                                        <?php
+                                    <i class="far fa-star"></i>
+                                    <?php
 
                                 }
                             }
