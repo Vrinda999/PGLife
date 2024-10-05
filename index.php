@@ -7,7 +7,7 @@ session_start();
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Best PG's in Mumbai | PG Life</title>
+    <title>Best PG's in <?php echo $city_name ?>| PG Life</title>
 
     <?php
     include "includes/head_links.php"
