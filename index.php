@@ -45,15 +45,15 @@ session_start();
         <div class="row">
             <div class="city-card-container col-md">
                 <div class="city-card rounded-circle">
-                    <a href="property_list.php?city=Bangalore">
+                    <a href="property_list.php?city=bengaluru">
                         <img src="img/bangalore.png" class="city-img" />
                     </a>
                 </div>
             </div>
             <div class="city-card-container col-md">
                 <div class="city-card rounded-circle">
-                    <a href="property_list.php?city=Chennai">
-                        <img src="img/chennai.png" class="city-img" />
+                    <a href="property_list.php?city=Hyderabad">
+                        <img src="img/Hyderabad.png" class="city-img" />
                     </a>
                 </div>
             </div>

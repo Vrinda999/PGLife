@@ -8,7 +8,7 @@
                 <a href="property_list.php?city=Mumbai">PG in Mumbai</a>
             </div>
             <div class="footer-city">
-                <a href="property_list.php?city=Bangalore">PG in Bangalore</a>
+                <a href="property_list.php?city=bengaluru">PG in bengaluru</a>
             </div>
             <div class="footer-city">
                 <a href="property_list.php?city=Hyderabad">PG in Hyderabad</a>
