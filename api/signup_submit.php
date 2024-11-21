@@ -22,7 +22,7 @@ if ($row_count != 0) {
     exit;
 }
 
-$sql = "INSERT INTO users (email, password, full_name, phone, gender, college_name) VALUES ('$email', '$password', '$full_name', '$phone', '$gender', '$college_name'";
+$sql = "INSERT INTO users (email, password, full_name, phone, gender, college_name) VALUES ('$email', '$password', '$full_name', '$phone', '$gender', '$college_name')";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     echo "Something Went Wrong!";
