@@ -251,6 +251,7 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/property_list.js"></script>
 </body>
 
 </html>
