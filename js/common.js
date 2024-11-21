@@ -1,7 +1,7 @@
 window.addEventListener("load", function () {
-    var signup_form = document.getElementById("signup_form");
+    var signup_form = document.getElementById("signup-form");
     signup_form.addEventListener("submit", function (event) {
-        var XHR = XMLHttpRequest();
+        var XHR = new XMLHttpRequest();
         var form_data = new FormData(signup_form);
 
         // On Success
@@ -20,9 +20,9 @@ window.addEventListener("load", function () {
         event.preventDefault();
     });
 
-    var login_form = document.getElementById("login_form");
+    var login_form = document.getElementById("login-form");
     login_form.addEventListener("submit", function (event) {
-        var XHR = XMLHttpRequest();
+        var XHR = new XMLHttpRequest();
         var form_data = new FormData(login_form);
 
         // On Success
