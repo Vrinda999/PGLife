@@ -4,16 +4,16 @@ window.addEventListener("load", function () {
         var XHR = new XMLHttpRequest();
         var form_data = new FormData(signup_form);
 
-        // On Success
+        // On success
         XHR.addEventListener("load", signup_success);
 
-        // On Error
+        // On error
         XHR.addEventListener("error", on_error);
 
-        // Set up Request
+        // Set up request
         XHR.open("POST", "api/signup_submit.php");
 
-        // Form data is Sent w Request
+        // Form data is sent with request
         XHR.send(form_data);
 
         document.getElementById("loading").style.display = 'block';
@@ -25,16 +25,16 @@ window.addEventListener("load", function () {
         var XHR = new XMLHttpRequest();
         var form_data = new FormData(login_form);
 
-        // On Success
+        // On success
         XHR.addEventListener("load", login_success);
 
-        // On Error
+        // On error
         XHR.addEventListener("error", on_error);
 
-        // Set up Request
+        // Set up request
         XHR.open("POST", "api/login_submit.php");
 
-        // Form data is Sent w Request
+        // Form data is sent with request
         XHR.send(form_data);
 
         document.getElementById("loading").style.display = 'block';
@@ -68,5 +68,5 @@ var login_success = function (event) {
 var on_error = function (event) {
     document.getElementById("loading").style.display = 'none';
 
-    alert("Oops! Something Went Wrong!");
+    alert('Oops! Something went wrong.');
 };

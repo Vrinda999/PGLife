@@ -5,7 +5,7 @@ require "includes/database_connect.php";
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : NULL;
 $property_id = $_GET['property_id'];
 
-$sql_1 = "SELECT *, p.id AS property_id, p.name AS property_name, c.name AS city_name
+$sql_1 = "SELECT *, p.id AS property_id, p.name AS property_name, c.name AS city_name 
             FROM properties p
             INNER JOIN cities c
             ON p.city_id = c.id
@@ -31,7 +31,8 @@ if (!$result_2) {
 }
 $testimonials = mysqli_fetch_all($result_2, MYSQLI_ASSOC);
 
-$sql_3 = "SELECT a.*
+
+$sql_3 = "SELECT a.* 
             FROM amenities a
             INNER JOIN properties_amenities pa ON a.id = pa.amenity_id
             WHERE pa.property_id = $property_id";
@@ -41,6 +42,7 @@ if (!$result_3) {
     return;
 }
 $amenities = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
+
 
 $sql_4 = "SELECT * FROM interested_users_properties WHERE property_id = $property_id";
 $result_4 = mysqli_query($conn, $sql_4);
@@ -57,12 +59,11 @@ $interested_users_count = mysqli_num_rows($result_4);
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $property['property_name']; ?>| PG Life</title>
+    <title><?= $property['property_name']; ?> | PG Life</title>
 
     <?php
-    include "includes/head_links.php"
-        ?>
-
+    include "includes/head_links.php";
+    ?>
     <link href="css/property_detail.css" rel="stylesheet" />
 </head>
 
@@ -71,8 +72,8 @@ $interested_users_count = mysqli_num_rows($result_4);
     include "includes/header.php";
     ?>
 
-    <div id="loading">
-    </div>
+    <!-- <div id="loading">
+    </div> -->
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb py-2">
@@ -80,10 +81,10 @@ $interested_users_count = mysqli_num_rows($result_4);
                 <a href="index.php">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="property_list.php"><?= $property['city_name'] ?></a>
+                <a href="property_list.php?city=<?= $property['city_name']; ?>"><?= $property['city_name']; ?></a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                <?= $property['property_name'] ?>
+                <?= $property['property_name']; ?>
             </li>
         </ol>
     </nav>
@@ -91,23 +92,22 @@ $interested_users_count = mysqli_num_rows($result_4);
     <div id="property-images" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <?php
-            $property_images = glob("img/properties/" . $property["property_id"] . "/*");
-            foreach ($property_images as $prop_image) {
-                ?>
-                <li data-target="#property-images" data-slide-to="<?= $index ?>"
-                    class="<?= $index == 0 ? "active" : ""; ?>"></li>
-                <?php
+            $property_images = glob("img/properties/" . $property['property_id'] . "/*");
+            foreach ($property_images as $index => $property_image) {
+            ?>
+                <li data-target="#property-images" data-slide-to="<?= $index ?>" class="<?= $index == 0 ? "active" : ""; ?>"></li>
+            <?php
             }
             ?>
         </ol>
         <div class="carousel-inner">
             <?php
-            foreach ($property_images as $index => $prop_image) {
-                ?>
-                <div class="carousel-item <?= $index == 0 ? "active" : "" ?>">
-                    <img class="d-block w-100" src="<?= $prop_image ?>" alt="slide">
+            foreach ($property_images as $index => $property_image) {
+            ?>
+                <div class="carousel-item <?= $index == 0 ? "active" : ""; ?>">
+                    <img class="d-block w-100" src="<?= $property_image ?>" alt="slide">
                 </div>
-                <?php
+            <?php
             }
             ?>
         </div>
@@ -135,18 +135,17 @@ $interested_users_count = mysqli_num_rows($result_4);
                 $rating = $total_rating;
                 for ($i = 0; $i < 5; $i++) {
                     if ($rating >= $i + 0.8) {
-                        ?>
+                ?>
                         <i class="fas fa-star"></i>
-                        <?php
+                    <?php
                     } elseif ($rating >= $i + 0.3) {
-                        ?>
+                    ?>
                         <i class="fas fa-star-half-alt"></i>
-                        <?php
+                    <?php
                     } else {
-                        ?>
+                    ?>
                         <i class="far fa-star"></i>
-                        <?php
-
+                <?php
                     }
                 }
                 ?>
@@ -163,21 +162,17 @@ $interested_users_count = mysqli_num_rows($result_4);
                 }
 
                 if ($is_interested) {
-                    ?>
-
+                ?>
                     <i class="is-interested-image fas fa-heart"></i>
-
-                    <?php
+                <?php
                 } else {
-                    ?>
+                ?>
                     <i class="is-interested-image far fa-heart"></i>
-                    <?php
+                <?php
                 }
                 ?>
                 <div class="interested-text">
-                    <span class="interested-user-count">
-                        <?= $interested_users_count ?> interested
-                    </span>
+                    <span class="interested-user-count"><?= $interested_users_count ?></span> interested
                 </div>
             </div>
         </div>
@@ -186,26 +181,25 @@ $interested_users_count = mysqli_num_rows($result_4);
             <div class="property-address"><?= $property['address'] ?></div>
             <div class="property-gender">
                 <?php
-                if ($property['gender'] == 'male') {
-                    ?>
-                    <img src="img/male.png" />
-                    <?php
-                } elseif ($property['gender'] == 'female') {
-                    ?>
-                    <img src="img/female.png" />
-                    <?php
+                if ($property['gender'] == "male") {
+                ?>
+                    <img src="img/male.png">
+                <?php
+                } elseif ($property['gender'] == "female") {
+                ?>
+                    <img src="img/female.png">
+                <?php
                 } else {
-                    ?>
-
-                    <img src="img/unisex.png" />
-                    <?php
+                ?>
+                    <img src="img/unisex.png">
+                <?php
                 }
                 ?>
             </div>
         </div>
         <div class="row no-gutters">
             <div class="rent-container col-6">
-                <div class="rent">₹ <?= $property['rent'] ?>/-</div>
+                <div class="rent">₹ <?= number_format($property['rent']) ?>/-</div>
                 <div class="rent-unit">per month</div>
             </div>
             <div class="button-container col-6">
@@ -223,12 +217,12 @@ $interested_users_count = mysqli_num_rows($result_4);
                     <?php
                     foreach ($amenities as $amenity) {
                         if ($amenity['type'] == "Building") {
-                            ?>
+                    ?>
                             <div class="amenity-container">
-                                <img src="img/amenities/<?= $amenity['icon'] ?>.svg" />
+                                <img src="img/amenities/<?= $amenity['icon'] ?>.svg">
                                 <span><?= $amenity['name'] ?></span>
                             </div>
-                            <?php
+                    <?php
                         }
                     }
                     ?>
@@ -239,12 +233,12 @@ $interested_users_count = mysqli_num_rows($result_4);
                     <?php
                     foreach ($amenities as $amenity) {
                         if ($amenity['type'] == "Common Area") {
-                            ?>
+                    ?>
                             <div class="amenity-container">
-                                <img src="img/amenities/<?= $amenity['icon'] ?>.svg" />
+                                <img src="img/amenities/<?= $amenity['icon'] ?>.svg">
                                 <span><?= $amenity['name'] ?></span>
                             </div>
-                            <?php
+                    <?php
                         }
                     }
                     ?>
@@ -255,12 +249,12 @@ $interested_users_count = mysqli_num_rows($result_4);
                     <?php
                     foreach ($amenities as $amenity) {
                         if ($amenity['type'] == "Bedroom") {
-                            ?>
+                    ?>
                             <div class="amenity-container">
-                                <img src="img/amenities/<?= $amenity['icon'] ?>.svg" />
+                                <img src="img/amenities/<?= $amenity['icon'] ?>.svg">
                                 <span><?= $amenity['name'] ?></span>
                             </div>
-                            <?php
+                    <?php
                         }
                     }
                     ?>
@@ -271,12 +265,12 @@ $interested_users_count = mysqli_num_rows($result_4);
                     <?php
                     foreach ($amenities as $amenity) {
                         if ($amenity['type'] == "Washroom") {
-                            ?>
+                    ?>
                             <div class="amenity-container">
-                                <img src="img/amenities/<?= $amenity['icon'] ?>.svg" />
+                                <img src="img/amenities/<?= $amenity['icon'] ?>.svg">
                                 <span><?= $amenity['name'] ?></span>
                             </div>
-                            <?php
+                    <?php
                         }
                     }
                     ?>
@@ -302,22 +296,22 @@ $interested_users_count = mysqli_num_rows($result_4);
                             <i class="rating-criteria-icon fas fa-broom"></i>
                             <span class="rating-criteria-text">Cleanliness</span>
                         </div>
-                        <div class="rating-criteria-star-container col-6" title="<?= $total_rating ?>">
+                        <div class="rating-criteria-star-container col-6" title="<?= $property['rating_clean'] ?>">
                             <?php
                             $rating = $property['rating_clean'];
                             for ($i = 0; $i < 5; $i++) {
                                 if ($rating >= $i + 0.8) {
-                                    ?>
+                            ?>
                                     <i class="fas fa-star"></i>
-                                    <?php
+                                <?php
                                 } elseif ($rating >= $i + 0.3) {
-                                    ?>
+                                ?>
                                     <i class="fas fa-star-half-alt"></i>
-                                    <?php
+                                <?php
                                 } else {
-                                    ?>
+                                ?>
                                     <i class="far fa-star"></i>
-                                    <?php
+                            <?php
 
                                 }
                             }
@@ -325,29 +319,27 @@ $interested_users_count = mysqli_num_rows($result_4);
                         </div>
                     </div>
 
-
                     <div class="rating-criteria row">
                         <div class="col-6">
                             <i class="rating-criteria-icon fas fa-utensils"></i>
                             <span class="rating-criteria-text">Food Quality</span>
                         </div>
-                        <div class="rating-criteria-star-container col-6" title="<?= $total_rating ?>">
+                        <div class="rating-criteria-star-container col-6" title="<?= $property['rating_food'] ?>">
                             <?php
                             $rating = $property['rating_food'];
                             for ($i = 0; $i < 5; $i++) {
                                 if ($rating >= $i + 0.8) {
-                                    ?>
+                            ?>
                                     <i class="fas fa-star"></i>
-                                    <?php
+                                <?php
                                 } elseif ($rating >= $i + 0.3) {
-                                    ?>
+                                ?>
                                     <i class="fas fa-star-half-alt"></i>
-                                    <?php
+                                <?php
                                 } else {
-                                    ?>
+                                ?>
                                     <i class="far fa-star"></i>
-                                    <?php
-
+                            <?php
                                 }
                             }
                             ?>
@@ -359,23 +351,22 @@ $interested_users_count = mysqli_num_rows($result_4);
                             <i class="rating-criteria-icon fa fa-lock"></i>
                             <span class="rating-criteria-text">Safety</span>
                         </div>
-                        <div class="rating-criteria-star-container col-6" title="<?= $total_rating ?>">
+                        <div class="rating-criteria-star-container col-6" title="<?= $property['rating_safety'] ?>">
                             <?php
                             $rating = $property['rating_safety'];
                             for ($i = 0; $i < 5; $i++) {
                                 if ($rating >= $i + 0.8) {
-                                    ?>
+                            ?>
                                     <i class="fas fa-star"></i>
-                                    <?php
+                                <?php
                                 } elseif ($rating >= $i + 0.3) {
-                                    ?>
+                                ?>
                                     <i class="fas fa-star-half-alt"></i>
-                                    <?php
+                                <?php
                                 } else {
-                                    ?>
+                                ?>
                                     <i class="far fa-star"></i>
-                                    <?php
-
+                            <?php
                                 }
                             }
                             ?>
@@ -385,28 +376,27 @@ $interested_users_count = mysqli_num_rows($result_4);
 
                 <div class="col-md-4">
                     <div class="rating-circle">
-
                         <?php
                         $total_rating = ($property['rating_clean'] + $property['rating_food'] + $property['rating_safety']) / 3;
                         $total_rating = round($total_rating, 1);
                         ?>
-                        <div class="rating-circle-star-container" title="<?= $total_rating ?>">
+                        <div class="total-rating"><?= $total_rating ?></div>
+                        <div class="rating-circle-star-container">
                             <?php
                             $rating = $total_rating;
                             for ($i = 0; $i < 5; $i++) {
                                 if ($rating >= $i + 0.8) {
-                                    ?>
+                            ?>
                                     <i class="fas fa-star"></i>
-                                    <?php
+                                <?php
                                 } elseif ($rating >= $i + 0.3) {
-                                    ?>
+                                ?>
                                     <i class="fas fa-star-half-alt"></i>
-                                    <?php
+                                <?php
                                 } else {
-                                    ?>
+                                ?>
                                     <i class="far fa-star"></i>
-                                    <?php
-
+                            <?php
                                 }
                             }
                             ?>
@@ -421,7 +411,7 @@ $interested_users_count = mysqli_num_rows($result_4);
         <h1>What people say</h1>
         <?php
         foreach ($testimonials as $testimonial) {
-            ?>
+        ?>
             <div class="testimonial-block">
                 <div class="testimonial-image-container">
                     <img class="testimonial-img" src="img/man.png">
@@ -434,7 +424,7 @@ $interested_users_count = mysqli_num_rows($result_4);
                 </div>
                 <div class="testimonial-name">- <?= $testimonial['user_name'] ?></div>
             </div>
-            <?php
+        <?php
         }
         ?>
     </div>

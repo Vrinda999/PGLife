@@ -1,9 +1,9 @@
 <?php
 session_start();
-require("includes/database_connect.php");
+require "includes/database_connect.php";
 
-$user_id = isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : NULL;
-$city_name = $_GET['city'];
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : NULL;
+$city_name = $_GET["city"];
 
 $sql_1 = "SELECT * FROM cities WHERE name = '$city_name'";
 $result_1 = mysqli_query($conn, $sql_1);
@@ -53,9 +53,8 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
     <title>Best PG's in <?php echo $city_name ?> | PG Life</title>
 
     <?php
-    include "includes/head_links.php"
-        ?>
-
+    include "includes/head_links.php";
+    ?>
     <link href="css/property_list.css" rel="stylesheet" />
 </head>
 
@@ -93,11 +92,11 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
 
         <?php
         foreach ($properties as $property) {
-            $property_images = glob("img/properties/" . $property["id"] . "/*");
+            $property_images = glob("img/properties/" . $property['id'] . "/*");
             ?>
-            <div class="property-card row">
+            <div class="property-card property-id-<?= $property['id'] ?> row">
                 <div class="image-container col-md-4">
-                    <img src="<?php $property_images[0] ?>" />
+                    <img src="<?= $property_images[0] ?>" />
                 </div>
                 <div class="content-container col-md-8">
                     <div class="row no-gutters justify-content-between">
@@ -105,7 +104,6 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
                         $total_rating = ($property['rating_clean'] + $property['rating_food'] + $property['rating_safety']) / 3;
                         $total_rating = round($total_rating, 1);
                         ?>
-
                         <div class="star-container" title="<?= $total_rating ?>">
                             <?php
                             $rating = $total_rating;
@@ -122,7 +120,6 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
                                     ?>
                                     <i class="far fa-star"></i>
                                     <?php
-
                                 }
                             }
                             ?>
@@ -132,31 +129,29 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
                             <?php
                             $interested_users_count = 0;
                             $is_interested = false;
-
                             foreach ($interested_users_props as $interested_user_property) {
                                 if ($interested_user_property['property_id'] == $property['id']) {
                                     $interested_users_count++;
-
 
                                     if ($interested_user_property['user_id'] == $user_id) {
                                         $is_interested = true;
                                     }
                                 }
                             }
+
                             if ($is_interested) {
                                 ?>
-
-                                <i class="fas fa-heart"></i>
-
+                                <i class="is-interested-image fas fa-heart" property_id="<?= $property['id'] ?>"></i>
                                 <?php
                             } else {
                                 ?>
-                                <i class="far fa-heart"></i>
+                                <i class="is-interested-image far fa-heart" property_id="<?= $property['id'] ?>"></i>
                                 <?php
                             }
                             ?>
-
-                            <div class="interested-text"><?= $interested_users_count ?> interested</div>
+                            <div class="interested-text">
+                                <span class="interested-user-count"><?= $interested_users_count ?></span> interested
+                            </div>
                         </div>
                     </div>
                     <div class="detail-container">
@@ -164,11 +159,11 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
                         <div class="property-address"><?= $property['address'] ?></div>
                         <div class="property-gender">
                             <?php
-                            if ($property['gender'] == 'male') {
+                            if ($property['gender'] == "male") {
                                 ?>
                                 <img src="img/male.png" />
                                 <?php
-                            } elseif ($property['gender'] == 'female') {
+                            } elseif ($property['gender'] == "female") {
                                 ?>
                                 <img src="img/female.png" />
                                 <?php
@@ -192,7 +187,6 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
                     </div>
                 </div>
             </div>
-
             <?php
         }
 
@@ -249,8 +243,8 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
     include "includes/footer.php";
     ?>
 
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
     <script type="text/javascript" src="js/property_list.js"></script>
 </body>
 
