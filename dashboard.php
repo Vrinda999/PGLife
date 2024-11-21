@@ -85,7 +85,7 @@ $interested_properties = mysqli_fetch_all($result_2, MYSQLI_ASSOC);
 
     <?php
     if (count($interested_properties) > 0) {
-        ?>
+    ?>
         <div class="my-interested-properties">
             <div class="page-container">
                 <h1>My Interested Properties</h1>
@@ -93,7 +93,7 @@ $interested_properties = mysqli_fetch_all($result_2, MYSQLI_ASSOC);
                 <?php
                 foreach ($interested_properties as $property) {
                     $property_images = glob("img/properties/" . $property['id'] . "/*");
-                    ?>
+                ?>
                     <div class="property-card property-id-<?= $property['id'] ?> row">
                         <div class="image-container col-md-4">
                             <img src="<?= $property_images[0] ?>" />
@@ -109,17 +109,17 @@ $interested_properties = mysqli_fetch_all($result_2, MYSQLI_ASSOC);
                                     $rating = $total_rating;
                                     for ($i = 0; $i < 5; $i++) {
                                         if ($rating >= $i + 0.8) {
-                                            ?>
+                                    ?>
                                             <i class="fas fa-star"></i>
-                                            <?php
+                                        <?php
                                         } elseif ($rating >= $i + 0.3) {
-                                            ?>
+                                        ?>
                                             <i class="fas fa-star-half-alt"></i>
-                                            <?php
+                                        <?php
                                         } else {
-                                            ?>
+                                        ?>
                                             <i class="far fa-star"></i>
-                                            <?php
+                                    <?php
                                         }
                                     }
                                     ?>
@@ -134,17 +134,17 @@ $interested_properties = mysqli_fetch_all($result_2, MYSQLI_ASSOC);
                                 <div class="property-gender">
                                     <?php
                                     if ($property['gender'] == "male") {
-                                        ?>
+                                    ?>
                                         <img src="img/male.png">
-                                        <?php
+                                    <?php
                                     } elseif ($property['gender'] == "female") {
-                                        ?>
+                                    ?>
                                         <img src="img/female.png">
-                                        <?php
+                                    <?php
                                     } else {
-                                        ?>
+                                    ?>
                                         <img src="img/unisex.png">
-                                        <?php
+                                    <?php
                                     }
                                     ?>
                                 </div>
@@ -155,24 +155,25 @@ $interested_properties = mysqli_fetch_all($result_2, MYSQLI_ASSOC);
                                     <div class="rent-unit">per month</div>
                                 </div>
                                 <div class="button-container col-6">
-                                    <a href="property_detail.php?property_id=<?= $property['id'] ?>"
-                                        class="btn btn-primary">View</a>
+                                    <a href="property_detail.php?property_id=<?= $property['id'] ?>" class="btn btn-primary">View</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <?php
+                <?php
                 }
                 ?>
             </div>
         </div>
-        <?php
+    <?php
     }
     ?>
 
     <?php
     include "includes/footer.php";
     ?>
+
+    <script type="text/javascript" src="js/dashboard.js"></script>
 </body>
 
 </html>
