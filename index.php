@@ -75,8 +75,8 @@ session_start();
     </div>
 
     <?php
-    include "includes/signup.php";
-    include "includes/login.php";
+    include "includes/signup_modal.php";
+    include "includes/login_modal.php";
     include "includes/footer.php";
     ?>
     <script type="text/javascript" src="js/jquery.js"></script>

@@ -440,8 +440,8 @@ $interested_users_count = mysqli_num_rows($result_4);
     </div>
 
     <?php
-    include "includes/signup.php";
-    include "includes/login.php";
+    include "includes/signup_modal.php";
+    include "includes/login_modal.php";
     include "includes/footer.php";
     ?>
 </body>

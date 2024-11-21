@@ -244,8 +244,8 @@ $interested_users_props = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
     </div>
 
     <?php
-    include "includes/signup.php";
-    include "includes/login.php";
+    include "includes/signup_modal.php";
+    include "includes/login_modal.php";
     include "includes/footer.php";
     ?>
 

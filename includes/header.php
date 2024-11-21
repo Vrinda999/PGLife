@@ -35,7 +35,7 @@
                     </li>
                     <div class="nav-vl"></div>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout-modal">
+                        <a class="nav-link" href="logout.php">
                             <i class="fas fa-sign-out-alt"></i>Logout
                         </a>
                     </li>
