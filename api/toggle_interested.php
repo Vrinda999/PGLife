@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 require "../includes/database_connect.php";
 
 if (!isset($_SESSION['user_id'])) {
@@ -39,3 +40,5 @@ if (mysqli_num_rows($result_1) > 0) {
         return;
     }
 }
+;
+

@@ -1,3 +1,7 @@
+<?php
+include 'session_manager.php';
+?>
+
 <div class="header sticky-top">
     <nav class="navbar navbar-expand-md navbar-light">
         <a class="navbar-brand" href="index.php">
