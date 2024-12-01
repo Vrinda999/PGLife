@@ -7,7 +7,7 @@ const Stars = props => {
     for (let i = 0; i < 5; i++) {
         if (props.rating >= i + 0.8) {
             star = <i className="fas fa-star" key={i}></i>;
-        } else if ($rating >= i + 0.3) {
+        } else if (props.rating >= i + 0.3) {
             star = <i class="fas fa-star-half-alt" key={i}></i>;
         } else {
             star = <i class="far fa-star" key={i}></i>;
@@ -17,7 +17,7 @@ const Stars = props => {
     }
 
     return (
-        <div className="star-container" title={props.$rating}>
+        <div className="star-container" title={props.rating}>
             {stars}
         </div>
     );

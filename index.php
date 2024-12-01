@@ -10,8 +10,8 @@ session_start();
     <title>PG Life</title>
 
     <?php
-    include "includes/head_links.php"
-        ?>
+    include "includes/head_links.php";
+    ?>
 
     <link href="css/index.css" rel="stylesheet" />
 </head>
@@ -21,8 +21,6 @@ session_start();
     include "includes/header.php";
     ?>
 
-    <div id="loading">
-    </div>
 
     <div class="banner-container">
         <h2 class="white pb-3">Happiness per Square Foot</h2>
@@ -79,8 +77,7 @@ session_start();
     include "includes/login_modal.php";
     include "includes/footer.php";
     ?>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

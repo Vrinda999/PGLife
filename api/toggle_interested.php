@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+header("Access-Control-Allow-Origin: *");
+header('Content-Type: application/json');
 
 require "../includes/database_connect.php";
 
@@ -40,5 +42,3 @@ if (mysqli_num_rows($result_1) > 0) {
         return;
     }
 }
-;
-
