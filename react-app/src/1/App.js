@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import FilterBar from './FilterBar';
-import FilterModal from './FilterModal';
-import PropertyCard from './PropertyCard';
-import NoProperty from './NoProperty';
+import FilterBar from './FilterBar.js';
+import FilterModal from './FilterModal.js';
+import PropertyCard from './PropertyCard.js';
+import NoProperty from './NoProperty.js';
 import { base_path } from './utils.js';
 
 class App extends Component {
